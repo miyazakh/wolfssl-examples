@@ -22,6 +22,22 @@
 #define WOLFDEMO_H_
 
 
+//#define WOLFCRYPT_TEST
+//#define WOLF_BENCHMARK
+
+#define WOLFSSL_CLIENT_TEST
+//#define WOLFSSL_SERVER_TEST
+
+#if defined(WOLFSSL_CLIENT_TEST) || \
+	defined(WOLFSSL_SERVER_TEST)
+    #define ETHER_TASK
+#endif
+
+#if defined(WOLFSSL_CLIENT_TEST) && \
+	defined(WOLFSSL_SERVER_TEST)
+    #error "Only one of Client or Server can be set."
+#endif
+
 typedef struct func_args
 {
     int argc;
@@ -29,14 +45,18 @@ typedef struct func_args
     int return_code;
 } func_args;
 
+struct WOLFSSL_CTX;
 void wolfSSL_init(void) ;
-WOLFSSL_CTX *wolfSSL_TLS_server_init(void);
-WOLFSSL_CTX *wolfSSL_TLS_client_init(void);
+int wolfCrypt_Init(void);
+int wolfCrypt_Cleanup(void);
+struct WOLFSSL_CTX *wolfSSL_TLS_server_init(void);
+struct WOLFSSL_CTX *wolfSSL_TLS_client_init(void);
 
 void benchmark_test(void *args);
 void wolfcrypt_test(void *args);
-void wolfSSL_TLS_client(void *ctx, func_args *args);
-void wolfSSL_TLS_server(void *ctx, func_args *args);
-#define SERVER_IP "192.168.11.4"
-#define SERVER_PortNo (1024)
+int wolfSSL_TLS_client(void *ctx, func_args *args);
+int wolfSSL_TLS_server(void *ctx, func_args *args);
+
+#define SERVER_IP "192.168.11.38"
+#define SERVER_PortNo (11111)
 #endif /* WOLFDEMO_H_ */

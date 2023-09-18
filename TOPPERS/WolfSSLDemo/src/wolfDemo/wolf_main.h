@@ -26,8 +26,13 @@
 #include "Pin.h"
 #include "r_t4_itcpip.h"
 
-#define DEBUG_PRINT
-#define SERVER_TEST
+//#define DEBUG_PRINT
+
+#if defined(DEBUG_PRINT)
+    #define debug_print(...) printf(__VA_ARGS__)
+#else
+    #define debug_print(...)
+#endif
 
 void main(void);
 bool init_ether(void);

@@ -24,9 +24,8 @@
 #include "r_cmt_rx_if.h"
 #include "Pin.h"
 #include "r_t4_itcpip.h"
+#include "wolf_demo.h"
 
-#define SSL_SERVER
-#define ETHER_TASK
 extern const UB _t4_dhcp_enable;
 static int dhcp_accept_flg = 0;
 static UW tcpudp_work[14800] = {0};
@@ -36,9 +35,10 @@ void print_dhcp(VP param);
 #define DHCP_ENABEL        (1)
 #define IF_CH_NUMBER       (0)
 
+
 void main(void) 
 {
-    /*Toopers start function */
+    /*Toppers start function */
     startw();
 }
 
@@ -106,30 +106,58 @@ extern void timeTick(void *pdata);
 
 void taskDemoWolf(intptr_t exinf) 
 {
+	int ret;
+#if defined(WOLFCRYPT_TEST)
+    func_args args = { 0 };
+#endif
     uint32_t channel = 0;
+    printf("Start WolfSSL Demo !!\n");
+#if defined(WOLFSSL_SERVER_TEST) || \
+    defined(WOLFSSL_CLIENT_TEST)
     if (!init_ether()) 
         return ;
+#endif
     R_CMT_CreatePeriodic(FREQ, &timeTick, &channel);
     ICU.SLIBXR128.BYTE = 1; /* select B */
 
     sigsem_ether_wrapper();
     while(1) {
         dly_tsk(10);
+#if defined(WOLFCRYPT_TEST)
+        if ((ret = wolfCrypt_Init()) != 0) {
+            printf(" wolfCrypt_Init failed %d\n", ret);
+        }
+        printf("\n");
+        printf("\n Start wolfCrypt Test\n");
+        wolfcrypt_test((void*)&args);
+        printf(" End wolfCrypt Test\n");
+
+        if ((ret = wolfCrypt_Cleanup()) != 0) {
+           printf("wolfCrypt_Cleanup failed %d\n", ret);
+        }
+        break;
+#elif defined(WOLF_BENCHMARK)
+        printf(" Start wolfCrypt Benchmark\n");
+        benchmark_test(NULL);
+        printf(" End wolfCrypt Benchmark\n");
+        break;
+#elif defined(WOLFSSL_SERVER_TEST) || \
+      defined(WOLFSSL_CLIENT_TEST)
         if (dhcp_accept_flg == 1) {
             dly_tsk(100);
-#ifdef SSL_SERVER
-            if(wolfSSL_TLS_server_Wrapper() != E_OK) {
-                printf("wolfSSL server failure end of process\n");
+    #if defined(WOLFSSL_SERVER_TEST)
+            if((ret = wolfSSL_TLS_server_Wrapper()) != 0) {
+                printf("wolfSSL server failure end of process(%d)\n", ret);
                 break;
             }
-#else
-           if(wolfSSL_TLS_client_Wrapper() != E_OK) {
-               printf("wolfSSL client failure end of process\n");
-               break;
-           }
-#endif
-
+    #elif defined(WOLFSSL_CLIENT_TEST)
+            if((ret = wolfSSL_TLS_client_Wrapper()) != 0) {
+                printf("wolfSSL client failure end of process(%d)\n", ret);
+                break;
+            }
+    #endif
         }
+#endif
     }
 }
 
@@ -185,71 +213,71 @@ void print_dhcp(VP param)
 
 ER system_callback(UB channel, UW eventid, VP param)
 {
-    printf("Network callback accept channel=%d,EventNo=%d \n",channel,eventid);
+	debug_print("Network callback accept channel=%d,EventNo=%d \n",channel,eventid);
     dhcp_evt = eventid;
     switch(eventid) {
         case ETHER_EV_LINK_OFF:
             {
-                printf("DHCP Event Accept ETHER_EV_LINK_OFF\n");
+            	debug_print("DHCP Event Accept ETHER_EV_LINK_OFF\n");
             }
             break;
         case ETHER_EV_LINK_ON:
             {
-                printf("DHCP Event Accept ETHER_EV_LINK_ON\n");
+            	debug_print("DHCP Event Accept ETHER_EV_LINK_ON\n");
             }
             break;
      case ETHER_EV_COLLISION_IP:
             {
-                 printf("DHCP Event Accept ETHER_EV_COLLISION_IP\n");
+            	debug_print("DHCP Event Accept ETHER_EV_COLLISION_IP\n");
             }
             break;
      case DHCP_EV_LEASE_IP:
            {
-                printf("DHCP Event Accept DHCP_EV_LEASE_IP\n");
+        	    debug_print("DHCP Event Accept DHCP_EV_LEASE_IP\n");
                 print_dhcp(param);
                 dhcp_accept_flg = 1;
             }
             break;
      case DHCP_EV_LEASE_OVER:
            {
-                printf("DHCP Event Accept DHCP_EV_LEASE_OVER\n");
+        	   debug_print("DHCP Event Accept DHCP_EV_LEASE_OVER\n");
            }
            break;
      case DHCP_EV_INIT:
            {
-               printf("DHCP Event Accept DHCP_EV_INIT\n");
+        	   debug_print("DHCP Event Accept DHCP_EV_INIT\n");
            } 
            break;
      case DHCP_EV_INIT_REBOOT:
            {
-               printf("DHCP Event Accept DHCP_EV_INIT_REBOOT\n");
+        	   debug_print("DHCP Event Accept DHCP_EV_INIT_REBOOT\n");
            }
            break;
      case DHCP_EV_APIPA:
            {
-               printf("DHCP Event Accept DHCP_EV_LEASE_IP\n");
+        	   debug_print("DHCP Event Accept DHCP_EV_LEASE_IP\n");
                print_dhcp(param);
                dhcp_accept_flg = 1;
            }
            break;
      case DHCP_EV_NAK:
            {
-               printf("DHCP Event Accept DHCP_EV_NAK\n");
+        	   debug_print("DHCP Event Accept DHCP_EV_NAK\n");
            }
            break;
      case DHCP_EV_FATAL_ERROR:
            {
-               printf("DHCP Event Accept DHCP_EV_FATAL_ERROR\n");
+        	   debug_print("DHCP Event Accept DHCP_EV_FATAL_ERROR\n");
            }
            break;
      case DHCP_EV_PLEASE_RESET:
            {
-                printf("DHCP Event Accept DHCP_EV_PLEASE_RESET\n");
+        	   debug_print("DHCP Event Accept DHCP_EV_PLEASE_RESET\n");
            }
            break;
      default:
            {
-                printf("DHCP Event Accept undefined\n");
+        	   debug_print("DHCP Event Accept undefined\n");
            }
            break;
     }

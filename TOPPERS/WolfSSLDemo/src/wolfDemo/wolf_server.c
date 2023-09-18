@@ -28,6 +28,7 @@
 #include "r_t4_rx_config.h"
 #include "wolfssl/certs_test.h"
 #include "wolf_demo.h"
+#include "wolf_main.h"
 
 static int my_IORecv(WOLFSSL* ssl, char* buff, int sz, void* ctx)
 {
@@ -50,7 +51,7 @@ static int my_IOSend(WOLFSSL* ssl, char* buff, int sz, void* ctx)
     int ret;
     ID  cepid = 0;
     if (ctx != NULL) {
-        printf("my_IOSend cepid OK \n");
+        debug_print("my_IOSend cepid OK \n");
     	cepid = *(ID *)ctx;
     } else 
         return WOLFSSL_CBIO_ERR_GENERAL;
@@ -136,8 +137,9 @@ WOLFSSL_CTX *wolfSSL_TLS_server_init(void)
 char buff[BUFF_SIZE];
 
 
-void wolfSSL_TLS_server(void *v_ctx, func_args *args)
+int wolfSSL_TLS_server(void *v_ctx, func_args *args)
 {
+	int ret = 0;
     ID cepid = 1;
     ID repid = 1;
     ER ercd;
@@ -150,26 +152,28 @@ void wolfSSL_TLS_server(void *v_ctx, func_args *args)
 
     if ((ercd = tcp_acp_cep(cepid, repid, &dst_addr, TMO_FEVR)) != E_OK) {
         printf("ERROR TCP Accept: %d\n", ercd);
-        return;
+        return -1;
     }
 
     if ((ssl = wolfSSL_new(ctx)) == NULL) {
         printf("ERROR: failed wolfSSL_new\n");
-        return;
+        ret = MEMORY_E;
+        goto exit_;
     }
 
     wolfSSL_SetIOReadCtx(ssl, (void *)&cepid);
     wolfSSL_SetIOWriteCtx(ssl, (void *)&cepid);
     printf("SSL Accept\n");
 
-    if (wolfSSL_accept(ssl) < 0) {
+    if ((ret = wolfSSL_accept(ssl)) < 0) {
         printf("ERROR: SSL Accept(%d)\n", wolfSSL_get_error(ssl, 0));
-        return;
+        goto exit_;
     }
     printf("SSL Read\n");
     if ((len = wolfSSL_read(ssl, buff, sizeof(buff) - 1)) < 0) {
         printf("ERROR: SSL Read(%d)\n", wolfSSL_get_error(ssl, 0));
-        return;
+        ret = -1;
+        goto exit_;
     }
 
     buff[len] = '\0';
@@ -177,14 +181,22 @@ void wolfSSL_TLS_server(void *v_ctx, func_args *args)
 
     if (wolfSSL_write(ssl, buff, len) != len) {
         printf("ERROR: SSL Write(%d)\n", wolfSSL_get_error(ssl, 0));
-        return;
+        ret = -1;
+        goto exit_;
+    }
+    ret = 0;
+
+exit_:
+    if (ssl) {
+    	wolfSSL_shutdown(ssl);
+        wolfSSL_free(ssl);
     }
 
-    wolfSSL_free(ssl);
     tcp_sht_cep(cepid);
     ercd = tcp_cls_cep(cepid, TMO_FEVR);
     if (ercd != E_OK) {
     	printf("tcp_cls_cep error %d\n",ercd);
     }
 
+    return ret;
 }

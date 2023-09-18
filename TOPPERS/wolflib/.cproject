@@ -21,7 +21,7 @@
 			</storageModule>
 			<storageModule moduleId="com.renesas.cdt.managedbuild.core.toolchainInfo">
 				<option id="toolchain.id" value="RENESAS_GCC_RX"/>
-				<option id="toolchain.version" value="8.3.0.202102"/>
+				<option id="toolchain.version" value="8.3.0.202305"/>
 				<option id="toolchain.enable" value="true"/>
 			</storageModule>
 			<storageModule moduleId="com.renesas.cdt.managedbuild.core.boardInfo">
@@ -89,7 +89,10 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="generate"/>
-						<entry excluding="wolfcrypt/src/port|src/x509_str.c|wolfcrypt/src/evp.c|wolfcrypt/src/misc.c|src/bio.c|src/conf.c|src/pk.c|src/x509.c|wolfcrypt/src/port/arm/armv8-sha512-asm.S|wolfcrypt/src/port/arm/armv8-sha3-asm.S|wolfcrypt/src/port/arm/armv8-curve25519.S|wolfcrypt/src/port/arm/armv8-32-sha512-asm.S|wolfcrypt/src/port/arm/armv8-32-sha256-asm.S|wolfcrypt/src/port/arm/armv8-32-curve25519.S|wolfcrypt/src/wc_kyber_asm.S|wolfcrypt/src/sp_x86_64_asm.S|wolfcrypt/src/sp_x86_64_asm.asm|wolfcrypt/src/sha512_asm.S|wolfcrypt/src/sha3_asm.S|wolfcrypt/src/sha256_asm.S|wolfcrypt/src/poly1305_asm.S|wolfcrypt/src/fe_x25519_asm.S|wolfcrypt/src/chacha_asm.S|wolfcrypt/src/aes_asm.asm|wolfcrypt/src/aes_gcm_x86_asm.S|wolfcrypt/src/aes_gcm_asm.S|wolfcrypt/src/aes_asm.S|wolfcrypt/user-crypto" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="test|wolfcrypt|src|wolfcrypt/src/sm3_asm.S|wolfcrypt/src/aes_gcm_asm.asm|wolfcrypt/src/port|src/x509_str.c|wolfcrypt/src/evp.c|wolfcrypt/src/misc.c|src/bio.c|src/conf.c|src/pk.c|src/x509.c|wolfcrypt/src/port/arm/armv8-sha512-asm.S|wolfcrypt/src/port/arm/armv8-sha3-asm.S|wolfcrypt/src/port/arm/armv8-curve25519.S|wolfcrypt/src/port/arm/armv8-32-sha512-asm.S|wolfcrypt/src/port/arm/armv8-32-sha256-asm.S|wolfcrypt/src/port/arm/armv8-32-curve25519.S|wolfcrypt/src/wc_kyber_asm.S|wolfcrypt/src/sp_x86_64_asm.S|wolfcrypt/src/sp_x86_64_asm.asm|wolfcrypt/src/sha512_asm.S|wolfcrypt/src/sha3_asm.S|wolfcrypt/src/sha256_asm.S|wolfcrypt/src/poly1305_asm.S|wolfcrypt/src/fe_x25519_asm.S|wolfcrypt/src/chacha_asm.S|wolfcrypt/src/aes_asm.asm|wolfcrypt/src/aes_gcm_x86_asm.S|wolfcrypt/src/aes_gcm_asm.S|wolfcrypt/src/aes_asm.S|wolfcrypt/user-crypto" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/src"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/test"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/wolfcrypt"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

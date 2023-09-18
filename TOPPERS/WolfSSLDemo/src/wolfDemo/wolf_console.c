@@ -26,8 +26,8 @@
 #include <r_t4_itcpip.h>
 #include "wolf_demo.h"
 
-extern void wolfSSL_TLS_server(void *v_ctx, func_args *args);
-extern void wolfSSL_TLS_client(void *v_ctx, func_args *args);
+extern int wolfSSL_TLS_server(void *v_ctx, func_args *args);
+extern int wolfSSL_TLS_client(void *v_ctx, func_args *args);
 
 static WOLFSSL_CTX *wolfSSL_sv_ctx;
 static WOLFSSL_CTX *wolfSSL_cl_ctx;
@@ -47,9 +47,9 @@ double current_time(int reset)
     return ((double)tick/FREQ) ;	
 }
 
-ER wolfSSL_TLS_client_Wrapper(void) {
+int wolfSSL_TLS_client_Wrapper(void) {
     func_args args = {0};
-    ER   ercd = E_OK;
+    int ret = 0;
     wolfSSL_cl_ctx = wolfSSL_TLS_client_init();
     if(wolfSSL_cl_ctx == NULL) {
     	printf("wolfSSL client initialization failure\n");
@@ -57,15 +57,15 @@ ER wolfSSL_TLS_client_Wrapper(void) {
     }
 	printf("Start TLS Client\n");
 
-	wolfSSL_TLS_client(wolfSSL_cl_ctx, &args);
+	ret = wolfSSL_TLS_client(wolfSSL_cl_ctx, &args);
     wolfSSL_CTX_free(wolfSSL_cl_ctx);
     wolfSSL_Cleanup();
 
-	return ercd;
+	return ret;
 }
-ER wolfSSL_TLS_server_Wrapper(void) {
+int wolfSSL_TLS_server_Wrapper(void) {
     func_args args = {0};
-    ER   ercd = E_OK;
+    int ret = 0;
     wolfSSL_sv_ctx = wolfSSL_TLS_server_init();
     if(wolfSSL_sv_ctx == NULL) {
     	printf("wolfSSL server initialization failure\n");
@@ -73,9 +73,9 @@ ER wolfSSL_TLS_server_Wrapper(void) {
     }
 	printf("Start TLS Server\n");
 
-	wolfSSL_TLS_server(wolfSSL_sv_ctx, &args);
+	ret = wolfSSL_TLS_server(wolfSSL_sv_ctx, &args);
     wolfSSL_CTX_free(wolfSSL_sv_ctx);
     wolfSSL_Cleanup();
 
-	return ercd;
+	return ret;
 }

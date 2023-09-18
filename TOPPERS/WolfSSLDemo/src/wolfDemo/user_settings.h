@@ -78,4 +78,6 @@
 #define HAVE_HKDF
 #define HAVE_FFDHE_2048
 
+#define WOLFSSL_TLS13
+
 #endif

@@ -127,11 +127,11 @@ WOLFSSL_CTX *wolfSSL_TLS_client_init(void)
 
 }
 
-void wolfSSL_TLS_client(void *v_ctx, func_args *args)
+int wolfSSL_TLS_client(void *v_ctx, func_args *args)
 {
     ID cepid = 3; /* Not used ID 3 Used */
     ER ercd;
-    int ret;
+    int ret = 0;
     WOLFSSL_CTX *ctx = (WOLFSSL_CTX *)v_ctx;
     WOLFSSL *ssl;
     #define BUFF_SIZE 256
@@ -144,40 +144,94 @@ void wolfSSL_TLS_client(void *v_ctx, func_args *args)
     dst_addr.portno = SERVER_PortNo;
     if ((ercd = tcp_con_cep(cepid, &my_addr, &dst_addr, TMO_FEVR)) != E_OK) {
         printf("ERROR TCP Connect: %d\n", ercd);
-        return;
+        ret = -1;
+        goto exit_;
     }
 
     if ((ssl = wolfSSL_new(ctx)) == NULL) {
         printf("ERROR wolfSSL_new: %d\n", wolfSSL_get_error(ssl, 0));
-        return;
+        ret = -1;
+        goto exit_;
     }
+    /* set client certificate */
+#if defined(USE_ECC_CERT)
+    if (ret == 0) {
+        ret = wolfSSL_use_certificate_buffer(ssl,
+                                        cliecc_cert_der_256,
+                                        sizeof_cliecc_cert_der_256,
+                                        WOLFSSL_FILETYPE_ASN1);
+        if(err != SSL_SUCCESS) {
+            printf("ERROR: can't load client-certificate\n");
+            ret = -1;
+            goto exit_;
+        }
+    }
+#else
+    ret = wolfSSL_use_certificate_buffer(ssl,
+                                     client_cert_der_2048,
+                                     sizeof_client_cert_der_2048,
+                                     WOLFSSL_FILETYPE_ASN1);
+    if (ret != SSL_SUCCESS) {
+        printf("ERROR: can't load client-certificate\n");
+        ret = -1;
+        goto exit_;
+    }
+#endif /* USE_ECC_CERT */
+#if defined(USE_ECC_CERT)
+    ret = wolfSSL_use_PrivateKey_buffer(ssl,
+                                ecc_clikey_der_256,
+                                sizeof_ecc_clikey_der_256,
+                                WOLFSSL_FILETYPE_ASN1);
+    if (ret) {
+        printf("ERROR wolfSSL_use_PrivateKey_buffer: %d\n",
+                                              wolfSSL_get_error(ssl, 0));
+        ret = -1;
+        goto exit_;
+    }
+
+#else
+   ret = wolfSSL_use_PrivateKey_buffer(ssl, client_key_der_2048,
+                         sizeof_client_key_der_2048, WOLFSSL_FILETYPE_ASN1);
+   if (ret != SSL_SUCCESS) {
+       printf("ERROR wolfSSL_use_PrivateKey_buffer: %d\n",
+                                            wolfSSL_get_error(ssl, 0));
+       ret = -1;
+       goto exit_;
+   }
+#endif /* USE_ECC_CERT */
 
     /* set callback context */
     wolfSSL_SetIOReadCtx(ssl, (void *)&cepid);
     wolfSSL_SetIOWriteCtx(ssl, (void *)&cepid);
 
-    if (wolfSSL_connect(ssl) != WOLFSSL_SUCCESS) {
+    if ((ret = wolfSSL_connect(ssl)) != WOLFSSL_SUCCESS) {
         printf("ERROR SSL connect: %d\n",  wolfSSL_get_error(ssl, 0));
-        return;
+        goto exit_;
     }
 
-    if (wolfSSL_write(ssl, sendBuff, strlen(sendBuff)) != strlen(sendBuff)) {
+    if ((ret = wolfSSL_write(ssl, sendBuff, strlen(sendBuff)))
+    		!= strlen(sendBuff)) {
         printf("ERROR SSL write: %d\n", wolfSSL_get_error(ssl, 0));
-        return;
+        goto exit_;
     }
 
-    if ((ret=wolfSSL_read(ssl, rcvBuff, BUFF_SIZE)) < 0) {
+    if ((ret = wolfSSL_read(ssl, rcvBuff, BUFF_SIZE)) < 0) {
         printf("ERROR SSL read: %d\n", wolfSSL_get_error(ssl, 0));
-        return;
+        goto exit_;
     }
     ret = (ret >= BUFF_SIZE) ? BUFF_SIZE - 1 : ret ;
     rcvBuff[ret] = '\0' ;
     printf("Received: %s\n", rcvBuff);
-
+    ret = 0;
+exit_:
     /* frees all data before client termination */
-    wolfSSL_free(ssl);
+    if (ssl) {
+       wolfSSL_shutdown(ssl);
+       wolfSSL_free(ssl);
+       ssl = NULL;
+    }
     tcp_sht_cep(cepid);
     tcp_cls_cep(cepid, TMO_FEVR);
 
-    return;
+    return ret;
 }

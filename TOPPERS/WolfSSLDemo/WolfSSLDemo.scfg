@@ -7,6 +7,7 @@
                 <option id="com.renesas.smc.toolchain.option.language" key="com.renesas.smc.toolchain.option.language.c"/>
                 <option id="com.renesas.smc.toolchain.option.buildArtefactType" key="com.renesas.smc.toolchain.option.buildArtefactType.exe"/>
                 <option id="com.renesas.smc.toolchain.option.rtos" key="com.renesas.smc.toolchain.option.rtos.none"/>
+                <option id="com.renesas.smc.toolchain.option.dual" key="com.renesas.smc.toolchain.option.dual.false"/>
             </toolchain>
         </configuration>
         <platform id="R5F572NDHxFB"/>
@@ -587,132 +588,132 @@
     </tool>
     <tool id="Pins" version="1.0.1.0">
         <pinItem allocation="10" comments="" direction="None" id="EMLE" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="20" comments="" direction="None" id="XTAL" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="50" comments="" direction="None" id="CLKOUT25M" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="65" comments="" direction="None" id="ET0_TX_EN" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="67" comments="" direction="None" id="ET0_TX_ER" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="85" comments="" direction="None" id="ET0_MDC" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="60" comments="" direction="None" id="ET0_COL" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="58" comments="" direction="None" id="ET0_CRS" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="22" comments="" direction="None" id="EXTAL" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="16" comments="" direction="None" id="FINED" isUsedBySoftware="true" locked="false" operationMode="" status="65280"/>
-        <pinItem allocation="70" comments="" direction="None" id="ET0_RX_DV" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="68" comments="" direction="None" id="ET0_RX_ER" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="61" comments="" direction="None" id="ET0_ETXD3" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="62" comments="" direction="None" id="ET0_ETXD2" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="63" comments="" direction="None" id="ET0_ETXD1" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="64" comments="" direction="None" id="ET0_ETXD0" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="69" comments="" direction="None" id="ET0_RX_CLK" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="65" comments="" direction="None" id="ET0_TX_EN" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="70" comments="" direction="None" id="ET0_RX_DV" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="66" comments="" direction="None" id="ET0_TX_CLK" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="50" comments="" direction="None" id="CLKOUT25M" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="20" comments="" direction="None" id="XTAL" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="67" comments="" direction="None" id="ET0_TX_ER" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="58" comments="" direction="None" id="ET0_CRS" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="75" comments="" direction="None" id="ET0_ERXD3" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="73" comments="" direction="None" id="ET0_ERXD2" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="61" comments="" direction="None" id="ET0_ETXD3" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="72" comments="" direction="None" id="ET0_ERXD1" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="16" comments="" direction="None" id="FINED" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="62" comments="" direction="None" id="ET0_ETXD2" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="71" comments="" direction="None" id="ET0_ERXD0" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="66" comments="" direction="None" id="ET0_TX_CLK" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="60" comments="" direction="None" id="ET0_COL" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="63" comments="" direction="None" id="ET0_ETXD1" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="64" comments="" direction="None" id="ET0_ETXD0" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="86" comments="" direction="None" id="ET0_MDIO" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinnumItem comment="LCD-B4" id="88"/>
-        <pinnumItem comment="LCD-B5" id="89"/>
-        <pinnumItem comment="LCD-R7" id="110"/>
-        <pinnumItem comment="LCD-B6" id="90"/>
-        <pinnumItem comment="LCD-B7" id="92"/>
-        <pinnumItem comment="QSPI-SO/SIO1" id="119"/>
-        <pinnumItem comment="LCD-G2" id="94"/>
-        <pinnumItem comment="LCD-G3" id="95"/>
-        <pinnumItem comment="LCD-G4" id="96"/>
-        <pinnumItem comment="LCD-G5" id="97"/>
-        <pinnumItem comment="EMLE" id="10"/>
-        <pinnumItem comment="LCD-BACKLIGHT" id="98"/>
-        <pinnumItem comment="MIC-DATA" id="11"/>
-        <pinnumItem comment="LCD-TOUCH-RST" id="99"/>
-        <pinnumItem comment="MD/FINED" id="16"/>
-        <pinnumItem comment="RESET" id="19"/>
-        <pinnumItem comment="QSPI-SI/SIO0" id="120"/>
-        <pinnumItem comment="QSPI-SCLK" id="121"/>
-        <pinnumItem comment="QSPI-CS#" id="122"/>
-        <pinnumItem comment="D2-LRCK" id="2"/>
-        <pinnumItem comment="QSPI-HOLD#/SIO3" id="123"/>
-        <pinnumItem comment="QSPI-WP#/SIO2" id="124"/>
-        <pinnumItem comment="D2-SDIN" id="4"/>
-        <pinnumItem comment="PMOD2-RST" id="125"/>
-        <pinnumItem comment="PMOD2-IRQ" id="126"/>
-        <pinnumItem comment="D2-SCLK" id="6"/>
-        <pinnumItem comment="PMOD2-SS" id="127"/>
-        <pinnumItem comment="MIC-BCLK" id="7"/>
-        <pinnumItem comment="PMOD2-MISO" id="128"/>
-        <pinnumItem comment="AUDIO_CLK" id="8"/>
-        <pinnumItem comment="PMOD2-SCK" id="129"/>
-        <pinnumItem comment="MIC-WS" id="9"/>
-        <pinnumItem comment="XTAL" id="20"/>
-        <pinnumItem comment="EXTAL" id="22"/>
-        <pinnumItem comment="LCD-TOUCH-INT" id="25"/>
-        <pinnumItem comment="LCD-TOUCH-SCL" id="26"/>
-        <pinnumItem comment="LCD-TOUCH-SDA" id="27"/>
-        <pinnumItem comment="WiFi-RTS" id="28"/>
-        <pinnumItem comment="WiFi-TXD" id="29"/>
-        <pinnumItem comment="PMOD2-MOSI" id="131"/>
-        <pinnumItem comment="PMOD2-IO1" id="133"/>
-        <pinnumItem comment="PMOD2-IO0" id="134"/>
-        <pinnumItem comment="WiFi-EN" id="137"/>
-        <pinnumItem comment="SD-ENABLE" id="138"/>
-        <pinnumItem comment="SD-FLT" id="139"/>
-        <pinnumItem comment="WiFi-CTS" id="30"/>
-        <pinnumItem comment="WiFi-RXD" id="31"/>
-        <pinnumItem comment="SDHI-SW_B" id="32"/>
-        <pinnumItem comment="SDHI-DATA1" id="34"/>
-        <pinnumItem comment="SDHI-DATA0" id="35"/>
-        <pinnumItem comment="SDHI-CLK" id="36"/>
-        <pinnumItem comment="SDHI-CMD" id="37"/>
-        <pinnumItem comment="SDHI-CD/DATA3" id="38"/>
-        <pinnumItem comment="SDHI-DATA2" id="39"/>
-        <pinnumItem comment="LED2" id="141"/>
-        <pinnumItem comment="SW2" id="144"/>
-        <pinnumItem comment="USB0VBUSEN" id="40"/>
-        <pinnumItem comment="PMOD1-RST" id="41"/>
-        <pinnumItem comment="PMOD1-IO1" id="42"/>
-        <pinnumItem comment="USB0OVRCURA" id="43"/>
-        <pinnumItem comment="USB-TXD" id="44"/>
-        <pinnumItem comment="USB-RXD" id="45"/>
-        <pinnumItem comment="USB0DM" id="47"/>
-        <pinnumItem comment="USB0DP" id="48"/>
-        <pinnumItem comment="ET0REFCLK" id="50"/>
-        <pinnumItem comment="PMOD1-IRQ" id="51"/>
-        <pinnumItem comment="PMOD1-SS" id="52"/>
-        <pinnumItem comment="PMOD1-IO0" id="53"/>
-        <pinnumItem comment="PMOD1-MISO" id="54"/>
-        <pinnumItem comment="PMOD1-SCK" id="55"/>
-        <pinnumItem comment="PMOD1-MOSI" id="56"/>
-        <pinnumItem comment="ET0CRS" id="58"/>
-        <pinnumItem comment="ET0COL" id="60"/>
-        <pinnumItem comment="ET0ETXD3" id="61"/>
-        <pinnumItem comment="ET0ETXD2" id="62"/>
-        <pinnumItem comment="ET0ETXD1" id="63"/>
-        <pinnumItem comment="ET0ETXD0" id="64"/>
-        <pinnumItem comment="ET0TXEN" id="65"/>
-        <pinnumItem comment="ET0TXCLK" id="66"/>
-        <pinnumItem comment="ET0INTRP" id="67"/>
-        <pinnumItem comment="ET0RXER" id="68"/>
-        <pinnumItem comment="ET0RXCLK" id="69"/>
-        <pinnumItem comment="ET0RXDV" id="70"/>
-        <pinnumItem comment="ET0ERXD0" id="71"/>
-        <pinnumItem comment="ET0ERXD1" id="72"/>
-        <pinnumItem comment="ET0ERXD2" id="73"/>
-        <pinnumItem comment="ET0ERXD3" id="75"/>
-        <pinnumItem comment="ET0RST(SW1-1ch)" id="77"/>
-        <pinnumItem comment="Light-SDA" id="78"/>
-        <pinnumItem comment="Light-SCL" id="79"/>
-        <pinnumItem comment="LCD-G6" id="101"/>
-        <pinnumItem comment="LCD-G7" id="102"/>
-        <pinnumItem comment="LCD-R3" id="106"/>
-        <pinnumItem comment="LCD-CLK" id="80"/>
-        <pinnumItem comment="LCD-R4" id="107"/>
-        <pinnumItem comment="LCD-VSYNC" id="81"/>
-        <pinnumItem comment="LCD-R5" id="108"/>
-        <pinnumItem comment="LCD-DISP-EN" id="82"/>
-        <pinnumItem comment="LCD-R6" id="109"/>
-        <pinnumItem comment="LCD-HSYNC" id="83"/>
-        <pinnumItem comment="LCD-DATA-EN" id="84"/>
-        <pinnumItem comment="ET0MDC" id="85"/>
-        <pinnumItem comment="ET0MDIO" id="86"/>
-        <pinnumItem comment="LCD-B3" id="87"/>
+        <pinItem allocation="22" comments="" direction="None" id="EXTAL" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="85" comments="" direction="None" id="ET0_MDC" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="69" comments="" direction="None" id="ET0_RX_CLK" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinnumItem comment="LCD-B4" id="88" symbolicname=""/>
+        <pinnumItem comment="LCD-B5" id="89" symbolicname=""/>
+        <pinnumItem comment="LCD-R7" id="110" symbolicname=""/>
+        <pinnumItem comment="LCD-B6" id="90" symbolicname=""/>
+        <pinnumItem comment="LCD-B7" id="92" symbolicname=""/>
+        <pinnumItem comment="QSPI-SO/SIO1" id="119" symbolicname=""/>
+        <pinnumItem comment="LCD-G2" id="94" symbolicname=""/>
+        <pinnumItem comment="LCD-G3" id="95" symbolicname=""/>
+        <pinnumItem comment="LCD-G4" id="96" symbolicname=""/>
+        <pinnumItem comment="LCD-G5" id="97" symbolicname=""/>
+        <pinnumItem comment="EMLE" id="10" symbolicname=""/>
+        <pinnumItem comment="LCD-BACKLIGHT" id="98" symbolicname=""/>
+        <pinnumItem comment="MIC-DATA" id="11" symbolicname=""/>
+        <pinnumItem comment="LCD-TOUCH-RST" id="99" symbolicname=""/>
+        <pinnumItem comment="MD/FINED" id="16" symbolicname=""/>
+        <pinnumItem comment="RESET" id="19" symbolicname=""/>
+        <pinnumItem comment="QSPI-SI/SIO0" id="120" symbolicname=""/>
+        <pinnumItem comment="QSPI-SCLK" id="121" symbolicname=""/>
+        <pinnumItem comment="QSPI-CS#" id="122" symbolicname=""/>
+        <pinnumItem comment="D2-LRCK" id="2" symbolicname=""/>
+        <pinnumItem comment="QSPI-HOLD#/SIO3" id="123" symbolicname=""/>
+        <pinnumItem comment="QSPI-WP#/SIO2" id="124" symbolicname=""/>
+        <pinnumItem comment="D2-SDIN" id="4" symbolicname=""/>
+        <pinnumItem comment="PMOD2-RST" id="125" symbolicname=""/>
+        <pinnumItem comment="PMOD2-IRQ" id="126" symbolicname=""/>
+        <pinnumItem comment="D2-SCLK" id="6" symbolicname=""/>
+        <pinnumItem comment="PMOD2-SS" id="127" symbolicname=""/>
+        <pinnumItem comment="MIC-BCLK" id="7" symbolicname=""/>
+        <pinnumItem comment="PMOD2-MISO" id="128" symbolicname=""/>
+        <pinnumItem comment="AUDIO_CLK" id="8" symbolicname=""/>
+        <pinnumItem comment="PMOD2-SCK" id="129" symbolicname=""/>
+        <pinnumItem comment="MIC-WS" id="9" symbolicname=""/>
+        <pinnumItem comment="XTAL" id="20" symbolicname=""/>
+        <pinnumItem comment="EXTAL" id="22" symbolicname=""/>
+        <pinnumItem comment="LCD-TOUCH-INT" id="25" symbolicname=""/>
+        <pinnumItem comment="LCD-TOUCH-SCL" id="26" symbolicname=""/>
+        <pinnumItem comment="LCD-TOUCH-SDA" id="27" symbolicname=""/>
+        <pinnumItem comment="WiFi-RTS" id="28" symbolicname=""/>
+        <pinnumItem comment="WiFi-TXD" id="29" symbolicname=""/>
+        <pinnumItem comment="PMOD2-MOSI" id="131" symbolicname=""/>
+        <pinnumItem comment="PMOD2-IO1" id="133" symbolicname=""/>
+        <pinnumItem comment="PMOD2-IO0" id="134" symbolicname=""/>
+        <pinnumItem comment="WiFi-EN" id="137" symbolicname=""/>
+        <pinnumItem comment="SD-ENABLE" id="138" symbolicname=""/>
+        <pinnumItem comment="SD-FLT" id="139" symbolicname=""/>
+        <pinnumItem comment="WiFi-CTS" id="30" symbolicname=""/>
+        <pinnumItem comment="WiFi-RXD" id="31" symbolicname=""/>
+        <pinnumItem comment="SDHI-SW_B" id="32" symbolicname=""/>
+        <pinnumItem comment="SDHI-DATA1" id="34" symbolicname=""/>
+        <pinnumItem comment="SDHI-DATA0" id="35" symbolicname=""/>
+        <pinnumItem comment="SDHI-CLK" id="36" symbolicname=""/>
+        <pinnumItem comment="SDHI-CMD" id="37" symbolicname=""/>
+        <pinnumItem comment="SDHI-CD/DATA3" id="38" symbolicname=""/>
+        <pinnumItem comment="SDHI-DATA2" id="39" symbolicname=""/>
+        <pinnumItem comment="LED2" id="141" symbolicname=""/>
+        <pinnumItem comment="SW2" id="144" symbolicname=""/>
+        <pinnumItem comment="USB0VBUSEN" id="40" symbolicname=""/>
+        <pinnumItem comment="PMOD1-RST" id="41" symbolicname=""/>
+        <pinnumItem comment="PMOD1-IO1" id="42" symbolicname=""/>
+        <pinnumItem comment="USB0OVRCURA" id="43" symbolicname=""/>
+        <pinnumItem comment="USB-TXD" id="44" symbolicname=""/>
+        <pinnumItem comment="USB-RXD" id="45" symbolicname=""/>
+        <pinnumItem comment="USB0DM" id="47" symbolicname=""/>
+        <pinnumItem comment="USB0DP" id="48" symbolicname=""/>
+        <pinnumItem comment="ET0REFCLK" id="50" symbolicname=""/>
+        <pinnumItem comment="PMOD1-IRQ" id="51" symbolicname=""/>
+        <pinnumItem comment="PMOD1-SS" id="52" symbolicname=""/>
+        <pinnumItem comment="PMOD1-IO0" id="53" symbolicname=""/>
+        <pinnumItem comment="PMOD1-MISO" id="54" symbolicname=""/>
+        <pinnumItem comment="PMOD1-SCK" id="55" symbolicname=""/>
+        <pinnumItem comment="PMOD1-MOSI" id="56" symbolicname=""/>
+        <pinnumItem comment="ET0CRS" id="58" symbolicname=""/>
+        <pinnumItem comment="ET0COL" id="60" symbolicname=""/>
+        <pinnumItem comment="ET0ETXD3" id="61" symbolicname=""/>
+        <pinnumItem comment="ET0ETXD2" id="62" symbolicname=""/>
+        <pinnumItem comment="ET0ETXD1" id="63" symbolicname=""/>
+        <pinnumItem comment="ET0ETXD0" id="64" symbolicname=""/>
+        <pinnumItem comment="ET0TXEN" id="65" symbolicname=""/>
+        <pinnumItem comment="ET0TXCLK" id="66" symbolicname=""/>
+        <pinnumItem comment="ET0INTRP" id="67" symbolicname=""/>
+        <pinnumItem comment="ET0RXER" id="68" symbolicname=""/>
+        <pinnumItem comment="ET0RXCLK" id="69" symbolicname=""/>
+        <pinnumItem comment="ET0RXDV" id="70" symbolicname=""/>
+        <pinnumItem comment="ET0ERXD0" id="71" symbolicname=""/>
+        <pinnumItem comment="ET0ERXD1" id="72" symbolicname=""/>
+        <pinnumItem comment="ET0ERXD2" id="73" symbolicname=""/>
+        <pinnumItem comment="ET0ERXD3" id="75" symbolicname=""/>
+        <pinnumItem comment="ET0RST(SW1-1ch)" id="77" symbolicname=""/>
+        <pinnumItem comment="Light-SDA" id="78" symbolicname=""/>
+        <pinnumItem comment="Light-SCL" id="79" symbolicname=""/>
+        <pinnumItem comment="LCD-G6" id="101" symbolicname=""/>
+        <pinnumItem comment="LCD-G7" id="102" symbolicname=""/>
+        <pinnumItem comment="LCD-R3" id="106" symbolicname=""/>
+        <pinnumItem comment="LCD-CLK" id="80" symbolicname=""/>
+        <pinnumItem comment="LCD-R4" id="107" symbolicname=""/>
+        <pinnumItem comment="LCD-VSYNC" id="81" symbolicname=""/>
+        <pinnumItem comment="LCD-R5" id="108" symbolicname=""/>
+        <pinnumItem comment="LCD-DISP-EN" id="82" symbolicname=""/>
+        <pinnumItem comment="LCD-R6" id="109" symbolicname=""/>
+        <pinnumItem comment="LCD-HSYNC" id="83" symbolicname=""/>
+        <pinnumItem comment="LCD-DATA-EN" id="84" symbolicname=""/>
+        <pinnumItem comment="ET0MDC" id="85" symbolicname=""/>
+        <pinnumItem comment="ET0MDIO" id="86" symbolicname=""/>
+        <pinnumItem comment="LCD-B3" id="87" symbolicname=""/>
     </tool>
     <tool id="Summary" version="1.0.0.0">
         <option id="com.renesas.smc.code.path" value="src\smc_gen"/>
@@ -802,7 +803,7 @@
                 <gridItem id="T4_CFG_ETHER_CH1_MAC_ADDRESS" selectedIndex="0x74,0x90,0x50,0x00,0x79,0x79"/>
                 <gridItem id="T4_CFG_SYSTEM_CALLBACK_FUNCTION_USE" selectedIndex="1"/>
                 <gridItem id="T4_CFG_SYSTEM_CALLBACK_FUNCTION_NAME_TMP" selectedIndex="system_callback"/>
-                <gridItem id="T4_CFG_TCP_REPID1_PORT_NUMBER" selectedIndex="1024"/>
+                <gridItem id="T4_CFG_TCP_REPID1_PORT_NUMBER" selectedIndex="11111"/>
                 <gridItem id="T4_CFG_TCP_REPID2_PORT_NUMBER" selectedIndex="1025"/>
                 <gridItem id="T4_CFG_TCP_REPID3_PORT_NUMBER" selectedIndex="1026"/>
                 <gridItem id="T4_CFG_TCP_REPID4_PORT_NUMBER" selectedIndex="1027"/>
