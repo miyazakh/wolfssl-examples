@@ -139,7 +139,7 @@ Accept DHCP.domain[0]
 Start TLS Server
 ```
 
- 3-1-3. サーバが取得いたIPアドレスに対して対抗のクライアントを実行します。
+ 3-1-3. サーバが取得したIPアドレスに対して対抗のクライアントを実行します。
  ```
  $ ./examples/client/client -h 192.168.11.6 -p 11111
 SSL version is TLSv1.2
